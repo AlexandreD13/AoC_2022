@@ -38,7 +38,8 @@ import os
 import time
 
 DAILY_BENCHMARK: bool = False
-TOTAL_BENCHMARK: bool = not DAILY_BENCHMARK
+# TOTAL_BENCHMARK: bool = not DAILY_BENCHMARK
+TOTAL_BENCHMARK: bool = False
 
 function_calls: list[list] = [[day1.part1, day1.part2], [day2.part1, day2.part2],
                               [day3.part1, day3.part2], [day4.part1, day4.part2],
@@ -79,7 +80,6 @@ def main():
                     start_time1: float = time.time()
 
                     part1_result = function_calls[day - 1][0](data)
-
                     part2_result = function_calls[day - 1][1](data)
 
                     end_time1: float = time.time()
