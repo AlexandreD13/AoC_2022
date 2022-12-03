@@ -37,6 +37,23 @@ from Color import Color
 import os
 import time
 
+DAILY_BENCHMARK: bool = False
+TOTAL_BENCHMARK: bool = not DAILY_BENCHMARK
+
+function_calls: list[list] = [[day1.part1, day1.part2], [day2.part1, day2.part2],
+                              [day3.part1, day3.part2], [day4.part1, day4.part2],
+                              [day5.part1, day5.part2], [day6.part1, day6.part2],
+                              [day7.part1, day7.part2], [day8.part1, day8.part2],
+                              [day9.part1, day9.part2], [day10.part1, day10.part2],
+                              [day11.part1, day11.part2], [day12.part1, day12.part2],
+                              [day13.part1, day13.part2], [day14.part1, day14.part2],
+                              [day15.part1, day15.part2], [day16.part1, day16.part2],
+                              [day17.part1, day17.part2], [day18.part1, day18.part2],
+                              [day19.part1, day19.part2], [day20.part1, day20.part2],
+                              [day21.part1, day21.part2], [day22.part1, day22.part2],
+                              [day23.part1, day23.part2], [day24.part1, day24.part2],
+                              [day25.part1, day25.part2]]
+
 
 def main():
     for day in range(1, 26):
@@ -56,53 +73,44 @@ def main():
         if len(data) > 0:
             print(f"Imported data :\t\t\t{Color.BLUE}{data[0:5]} (...){Color.END}")
 
-            function_calls: list[list] = [[day1.part1, day1.part2],
-                                          [day2.part1, day2.part2]]
-            # (day3.part1(data), day3.part2(data)),
-            # (day4.part1(data), day4.part2(data)),
-            # (day5.part1(data), day5.part2(data)),
-            # (day6.part1(data), day6.part2(data)),
-            # (day7.part1(data), day7.part2(data)),
-            # (day8.part1(data), day8.part2(data)),
-            # (day9.part1(data), day9.part2(data)),
-            # (day10.part1(data), day10.part2(data)),
-            # (day11.part1(data), day11.part2(data)),
-            # (day12.part1(data), day12.part2(data)),
-            # (day13.part1(data), day13.part2(data)),
-            # (day14.part1(data), day14.part2(data)),
-            # (day15.part1(data), day15.part2(data)),
-            # (day16.part1(data), day16.part2(data)),
-            # (day17.part1(data), day17.part2(data)),
-            # (day18.part1(data), day18.part2(data)),
-            # (day19.part1(data), day19.part2(data)),
-            # (day20.part1(data), day20.part2(data)),
-            # (day21.part1(data), day21.part2(data)),
-            # (day22.part1(data), day22.part2(data)),
-            # (day23.part1(data), day23.part2(data)),
-            # (day24.part1(data), day24.part2(data)),
-            # (day25.part1(data), day25.part2(data))]
+            if DAILY_BENCHMARK:
+                timer1 = []
+                for _ in range(0, 1001):
+                    start_time1: float = time.time()
 
-            part1_result = function_calls[day - 1][0](data)
-            print(f"Result of part 1 :\t\t{Color.BLUE}{part1_result}{Color.END}")
+                    part1_result = function_calls[day - 1][0](data)
 
-            part2_result = function_calls[day - 1][1](data)
-            print(f"Result of part 2 :\t\t{Color.BLUE}{part2_result}{Color.END}")
+                    part2_result = function_calls[day - 1][1](data)
 
-            # Write results to output file
-            output_file: str = "../output/day" + str(day) + ".txt"
-            output = open(output_file, "w")  # "a" - append / "w" - write
-            output.write(f"{part1_result}\n")
-            output.write(f"{part2_result}\n")
-            output.close()
+                    end_time1: float = time.time()
+                    time_taken1: float = end_time1 - start_time1
+                    timer1.append(time_taken1)
+                print(f"Result of part 1 :\t\t{Color.BLUE}{part1_result}{Color.END}")
+                print(f"Result of part 2 :\t\t{Color.BLUE}{part2_result}{Color.END}")
+                print(f"{Color.YELLOW}\nTotal Runtime :\t\t{round(sum(timer1) * 1000, 5)} ms{Color.END}")
+                print(f"{Color.YELLOW}Day Average Runtime :\t\t{round(sum(timer1) * 1000 / 1000, 5)} ms{Color.END}")
+            else:
+                part1_result = function_calls[day - 1][0](data)
+                print(f"Result of part 1 :\t\t{Color.BLUE}{part1_result}{Color.END}")
+
+                part2_result = function_calls[day - 1][1](data)
+                print(f"Result of part 2 :\t\t{Color.BLUE}{part2_result}{Color.END}")
         else:
             print(f"{Color.RED}No data in corresponding file{Color.END}{Color.END}")
 
 
 if __name__ == "__main__":
-    start_time: float = time.time()
+    if TOTAL_BENCHMARK:
+        timer2: list = []
+        for _ in range(0, 1001):
+            start_time2: float = time.time()
 
-    main()
+            main()
 
-    end_time: float = time.time()
-    time_taken: float = round((end_time - start_time) * 1000, 3)
-    print(f"{Color.YELLOW}\nRuntime :\t\t\t\t{time_taken} ms{Color.END}")
+            end_time2: float = time.time()
+            time_taken2: float = end_time2 - start_time2
+            timer2.append(time_taken2)
+        print(f"{Color.YELLOW}\nTotal Runtime :\t\t{round(sum(timer2) * 1000, 5)} ms{Color.END}")
+        print(f"{Color.YELLOW}Total Average Runtime :\t\t{round(sum(timer2) * 1000 / 1000, 5)} ms{Color.END}")
+    else:
+        main()

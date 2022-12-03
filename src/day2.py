@@ -14,7 +14,7 @@ combinations: dict = {"Lose": {"A": "C", "B": "A", "C": "B"},
                       "Draw": {"A": "A", "B": "B", "C": "C"}}
 
 
-def part1(data) -> int:
+def part1(data: list) -> int:
     score: int = 0
     data: list = "".join(data).replace(" ", "").split("\n")
     for elem in data:
@@ -27,7 +27,7 @@ def part1(data) -> int:
     return score
 
 
-def part2(data) -> int:
+def part2(data: list) -> int:
     score: int = 0
     data: list = "".join(data).replace(" ", "").split("\n")
     for elem in data:
