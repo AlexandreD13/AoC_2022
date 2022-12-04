@@ -6,8 +6,6 @@ Documentation:
 References:
 """
 
-import re
-
 
 def chunks(data: list, size):
     size = max(1, size)
@@ -16,7 +14,7 @@ def chunks(data: list, size):
 
 def part1(data: list) -> int:
     data = "".join(data).split("\n")
-    data = [re.split("[,-]", elem) for elem in data]
+    data = [" ".join(" ".join(elem.split("-")).split(",")).split(" ") for elem in data]
     data = [int(elem) for sublist in data for elem in sublist]
     data = chunks(data, 4)
     data = [True for elem in data
@@ -27,7 +25,7 @@ def part1(data: list) -> int:
 
 def part2(data: list) -> int:
     data = "".join(data).split("\n")
-    data = [re.split("[,-]", elem) for elem in data]
+    data = [" ".join(" ".join(elem.split("-")).split(",")).split(" ") for elem in data]
     data = [int(elem) for sublist in data for elem in sublist]
     data = chunks(data, 4)
     data = [True for elem in data

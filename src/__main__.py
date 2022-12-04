@@ -37,7 +37,7 @@ from Color import Color
 import os
 import time
 
-DAILY_BENCHMARK: bool = False
+DAILY_BENCHMARK: bool = True
 TOTAL_BENCHMARK: bool = not DAILY_BENCHMARK
 # TOTAL_BENCHMARK: bool = False
 
