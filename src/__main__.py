@@ -38,8 +38,8 @@ import os
 import time
 
 DAILY_BENCHMARK: bool = False
-# TOTAL_BENCHMARK: bool = not DAILY_BENCHMARK
-TOTAL_BENCHMARK: bool = False
+TOTAL_BENCHMARK: bool = not DAILY_BENCHMARK
+# TOTAL_BENCHMARK: bool = False
 
 function_calls: list[list] = [[day1.part1, day1.part2], [day2.part1, day2.part2],
                               [day3.part1, day3.part2], [day4.part1, day4.part2],
@@ -88,7 +88,7 @@ def main():
                 print(f"Result of part 1 :\t\t{Color.BLUE}{part1_result}{Color.END}")
                 print(f"Result of part 2 :\t\t{Color.BLUE}{part2_result}{Color.END}")
                 print(f"{Color.YELLOW}\nTotal Runtime :\t\t{round(sum(timer1) * 1000, 5)} ms{Color.END}")
-                print(f"{Color.YELLOW}Day Average Runtime :\t\t{round(sum(timer1) * 1000 / 1000, 5)} ms{Color.END}")
+                print(f"{Color.YELLOW}Dayly Average Runtime :\t\t{round(sum(timer1) * 1000 / 1000, 5)} ms{Color.END}")
             else:
                 part1_result = function_calls[day - 1][0](data)
                 print(f"Result of part 1 :\t\t{Color.BLUE}{part1_result}{Color.END}")
