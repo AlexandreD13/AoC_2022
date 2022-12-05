@@ -75,20 +75,20 @@ def main():
             print(f"Imported data :\t\t\t{Color.BLUE}{data[0:5]} (...){Color.END}")
 
             if DAILY_BENCHMARK:
-                timer1 = []
+                timer = []
                 for _ in range(0, 1001):
-                    start_time1: float = time.time()
+                    start_time: float = time.time()
 
                     part1_result = function_calls[day - 1][0](data)
                     part2_result = function_calls[day - 1][1](data)
 
-                    end_time1: float = time.time()
-                    time_taken1: float = end_time1 - start_time1
-                    timer1.append(time_taken1)
+                    end_time: float = time.time()
+                    time_taken: float = end_time - start_time
+                    timer.append(time_taken)
                 print(f"Result of part 1 :\t\t{Color.BLUE}{part1_result}{Color.END}")
                 print(f"Result of part 2 :\t\t{Color.BLUE}{part2_result}{Color.END}")
-                print(f"{Color.YELLOW}\nTotal Runtime :\t\t{round(sum(timer1) * 1000, 5)} ms{Color.END}")
-                print(f"{Color.YELLOW}Dayly Average Runtime :\t\t{round(sum(timer1) * 1000 / 1000, 5)} ms{Color.END}")
+                print(f"{Color.YELLOW}\nTotal Runtime :\t\t{round(sum(timer) * 1000, 5)} ms{Color.END}")
+                print(f"{Color.YELLOW}Average Runtime :\t\t{round(sum(timer) * 1000 / 1000, 5)} ms{Color.END}")
             else:
                 part1_result = function_calls[day - 1][0](data)
                 print(f"Result of part 1 :\t\t{Color.BLUE}{part1_result}{Color.END}")
@@ -101,16 +101,16 @@ def main():
 
 if __name__ == "__main__":
     if TOTAL_BENCHMARK:
-        timer2: list = []
+        timer: list = []
         for _ in range(0, 1001):
-            start_time2: float = time.time()
+            start_time: float = time.time()
 
             main()
 
-            end_time2: float = time.time()
-            time_taken2: float = end_time2 - start_time2
-            timer2.append(time_taken2)
-        print(f"{Color.YELLOW}\nTotal Runtime :\t\t{round(sum(timer2) * 1000, 5)} ms{Color.END}")
-        print(f"{Color.YELLOW}Total Average Runtime :\t\t{round(sum(timer2) * 1000 / 1000, 5)} ms{Color.END}")
+            end_time: float = time.time()
+            time_taken: float = end_time - start_time
+            timer.append(time_taken)
+        print(f"{Color.YELLOW}\nTotal Runtime :\t\t{round(sum(timer) * 1000, 5)} ms{Color.END}")
+        print(f"{Color.YELLOW}Total Average Runtime :\t\t{round(sum(timer) * 1000 / 1000, 5)} ms{Color.END}")
     else:
         main()

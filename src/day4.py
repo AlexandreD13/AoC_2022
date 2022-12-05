@@ -8,24 +8,24 @@ References:
 
 
 def part1(data: list) -> int:
-    data = "".join(data).split("\n")
-    data = [" ".join(" ".join(elem.split("-")).split(",")).split(" ") for elem in data]
-    data = [int(elem) for sublist in data for elem in sublist]
-    data = [data[i: i + 4] for i in range(0, len(data), 4)]
-    data = [True for elem in data
-            if min(elem[0], elem[2]) == elem[0] and max(elem[1], elem[3]) == elem[1]
-            or min(elem[0], elem[2]) == elem[2] and max(elem[1], elem[3]) == elem[3]]
-    return len(data)
+    data = [elem.rstrip("\n") for elem in data]
+    counter = 0
+    for line in data:
+        left, right = line.split(",")
+        l1, l2 = [int(elem) for elem in left.split("-")]
+        r1, r2 = [int(elem) for elem in right.split("-")]
+        if (min(l1, r1) == l1 and max(l2, r2) == l2) or (min(l1, r1) == r1 and max(l2, r2) == r2):
+            counter += 1
+    return counter
 
 
 def part2(data: list) -> int:
-    data = "".join(data).split("\n")
-    data = [" ".join(" ".join(elem.split("-")).split(",")).split(" ") for elem in data]
-    data = [int(elem) for sublist in data for elem in sublist]
-    data = [data[i: i + 4] for i in range(0, len(data), 4)]
-    data = [True for elem in data
-            if min(elem[0], elem[2]) == elem[0] and max(elem[1], elem[3]) == elem[1]
-            or min(elem[0], elem[2]) == elem[2] and max(elem[1], elem[3]) == elem[3]
-            or min(elem[0], elem[3]) == elem[0] and min(elem[1], elem[3]) == elem[3]
-            or min(elem[0], elem[2]) == elem[0] and min(elem[1], elem[2]) == elem[2]]
-    return len(data)
+    data = [elem.rstrip("\n") for elem in data]
+    counter = 0
+    for line in data:
+        left, right = line.split(",")
+        l1, l2 = [int(elem) for elem in left.split("-")]
+        r1, r2 = [int(elem) for elem in right.split("-")]
+        if (min(l1, r2) == l1 and max(l2, r2) == l2) or (min(r1, l2) == r1 and max(l2, r2) == r2):
+            counter += 1
+    return counter
