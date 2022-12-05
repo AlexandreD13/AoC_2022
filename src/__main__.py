@@ -37,9 +37,9 @@ from Color import Color
 import os
 import time
 
-DAILY_BENCHMARK: bool = False
-# TOTAL_BENCHMARK: bool = not DAILY_BENCHMARK
-TOTAL_BENCHMARK: bool = False
+DAILY_BENCHMARK: bool = True
+TOTAL_BENCHMARK: bool = not DAILY_BENCHMARK
+# TOTAL_BENCHMARK: bool = False
 
 function_calls: list[list] = [[day1.part1, day1.part2], [day2.part1, day2.part2],
                               [day3.part1, day3.part2], [day4.part1, day4.part2],
