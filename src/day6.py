@@ -7,9 +7,17 @@ References:
 """
 
 
-def part1(data) -> None:
-    return None
+def part1(data) -> int:
+    data = data[0]
+    for i in range(len(data)):
+        temp = set(data[i: i + 4])
+        if len(temp) == 4:
+            return i + 4
 
 
-def part2(data) -> None:
-    return None
+def part2(data) -> int:
+    data = data[0]
+    for i in range(len(data)):
+        temp = set(data[i: i + 14])
+        if len(temp) == 14:
+            return i + 14
