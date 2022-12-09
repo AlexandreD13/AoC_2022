@@ -6,6 +6,8 @@ Documentation:
 References:
 """
 
+# TODO Runtime is too slow, to be reworked
+
 
 def check_row(data: list, key: tuple) -> (bool, int):
     x, y = key
